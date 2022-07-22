@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Naveed Jameel\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev hardhat
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\OpenJDK\openjdk-11.0.15_10\bin;C:\Users\Naveed Jameel\AppData\Local\Microsoft\WindowsApps;C:\Users\Naveed Jameel\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Naveed Jameel\AppData\Roaming\npm;C:\Users\Naveed Jameel\Downloads\sqlite-tools-win32-x86-3390000;C:\Users\Naveed Jameel\AppData\Local\Android\Sdk\platform-tools;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.15.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\Naveed Jameel\Desktop\blockchain\course2\lesson6-Hardhat\node_modules\secp256k1\prebuilds\win32-x64\node.napi.node'
+
+npm manifest: 
+  {
+    "name": "lesson6-hardhat",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
