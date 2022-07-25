@@ -1,0 +1,11 @@
+{
+  "name": "hardhat_fundMe",
+  "auther": "Naveed Jameel",
+  "version": "0.1.1",
+  "devDependencies": {
+    "hardhat": "^2.10.1"
+  },
+  "scripts": {
+    "test": "yarn hardhat test"
+  }
+}
