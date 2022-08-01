@@ -1,0 +1,39 @@
+require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
+require("hardhat-deploy");
+require("solidity-coverage");
+require("hardhat-gas-reporter");
+require("hardhat-contract-sizer");
+require("dotenv").config();
+
+module.exports={
+    solidity:"0.8.7",
+    defaultNetwork:"hardhat",
+    networks:{
+        hardhat:{
+            chainId:31337,
+            blockConfirmations:1
+        },
+        rinkeby:{
+            chainId:4,
+            blockConfirmations:6,
+            url:"RPC_URL",
+            accounts:["PRIVATE_KEY_OF_ACCOUNT"]
+        }
+    },
+    nameAccounts:{
+        deployer:{
+            default:0
+        },
+        player:{
+            default:1
+        }
+    },
+    gasReporter:{
+        enabled:false,
+        currency:"USD",
+        outputFile:"gas-reporter.txt",
+        noColor:true,
+        //coinmarketcap: key after create account on coinmarketcap
+    }
+}

@@ -1,0 +1,27 @@
+run this cmd after hardhat project create
+
+yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle chai ethereum-waffle hardhat hardhat-contract-sizer hardhat-deploy hardhat-gas-reporter prettier prettier-plugin-solidity solhint solidity-coverage dotenv
+
+then this in hardhat.config.js
+
+require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
+require("hardhat-deploy");
+require("solidity-coverage");
+require("hardhat-gas-reporter");
+require("hardhat-contract-sizer");
+require("dotenv").config();
+
+/////// separtely if want /////////////////
+for testing these dependencies
+	npm install --save-dev @nomiclabs/hardhat-ethers ethers @nomiclabs/hardhat-waffle ethereum-waffle chai
+
+
+///////////// cmds //////////////////////
+
+create project
+	npm init --yes
+	npm i --save-dev hardhat
+	npx hardhat
+compile contracts
+	npx hardhat compile
