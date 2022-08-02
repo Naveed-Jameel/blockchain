@@ -1,13 +1,13 @@
 // this deploy inside deploy folder
+// run yarn hardhat deploy > i think run all deploy
+// yarn hardhat deploy --tags fundme > run only this deploy
 
 const { network } = require("hardhat");
 const { networkConfig, developmentChain } = require("../helper-hardhat-config");
 const { verify } = require("../utils/verify");
 
-// run yarn hardhat deploy > i think run all deploy
-// yarn hardhat deploy --tags fundme > run only this deploy
 module.exports = async ({ getNamedAccounts, deployments }) => {
-//const {getNamedAccounts,deployments}=require("hardhat") //can also import like this instead of props 
+//const {getNamedAccounts,deployments}=require("hardhat")//can also import like this instead of props 
     const { deploy, log } = deployments;
     const { deployer } = getNamedAccounts();
     const chainId = network.config.chainId;

@@ -1,4 +1,4 @@
-
+// course 2 testing
 const { deployments, ethers, getNamedAccounts } = require("hardhat");
 const { assert, expect } = require("chai");
 
@@ -11,12 +11,14 @@ const { assert, expect } = require("chai");
         const sendVal = 100000000000000;
         beforeEach(async () => {
             // deploy our FundMe contract using hardhat deploy
-            //const accounts=await ethers.getSigners() > from hh.config.js networks >rinkeby >accounts
+            //const accounts=await ethers.getSigners() > from hh.config.js networks>rinkeby>accounts
             //const account1=accounts[0];
             deployer = (await getNamedAccounts()).deployer; // account that deploy contract
             console.log(deployer);
-            await deployments.fixture(["all"]) // deploy all contracts that is in deploy folder with tag all
-            fundMe = await ethers.getContract("FundMe", deployer); // give most recently deployed FundMe contract and connect with deployer account
+            // deploy all contracts that is in deploy folder with tag all
+            await deployments.fixture(["all"])
+            // give most recently deployed FundMe contract and connect with deployer account 
+            fundMe = await ethers.getContract("FundMe", deployer); 
             mockV3Aggregator = await ethers.getContract("MockV3Aggregator", deployer);
 
         })
@@ -75,7 +77,7 @@ const { assert, expect } = require("chai");
             it("allows us to withdraw from multiple s_funders", async () => {
                 const accounts = await ethers.getSigners();
                 for (let i = 0; i < 6; i++) {
-                    // connect function similar like in remix we change account and add blnc to contract from changed account
+            // connect function similar like in remix we change account and add blnc to contract from changed account
                     const fundMeConnectedContract = await fundMe.connect(accounts[i]);
                     fundMeConnectedContract.fund({ value: sendVal })
                 }
@@ -86,7 +88,7 @@ const { assert, expect } = require("chai");
                 const transactionReceipt = await transactionResponse.wait(1);
                 const { gasUsed, effectiveGasPrice } = transactionReceipt;
                 const gasCost = gasUsed.mul(effectiveGasPrice);
-
+                                                        // getBalance is default func for check blnc
                 const endingFundMeBalance = await fundMe.provider.getBalance(fundMe.address);
                 const endingDeployerBalance = await fundMe.provider.getBalance(deployer.address);
 
@@ -94,15 +96,11 @@ const { assert, expect } = require("chai");
                 assert.equal(startingFundMeBalance.add(startingDeployerBalance).toString(),
                     endingDeployerBalance.add(gasCost).toString())
 
-                // make sure s_funders array reset
-                await expect(fundMe.s_funders(0)).to.be.reverted
-
+                await expect(fundMe.s_funders(0)).to.be.reverted // make sure s_funders array reset
                 // also all the mapping updating to zero blncs
                 for (let i = 0; i < 6; i++) {
                     assert.equal(fundMe.s_addressToAmountFunded(accounts[i].address), 0);
                 }
-
-
             })
 
             it("only allow owner to withdraw", async () => {
