@@ -1,0 +1,42 @@
+/////// HardHat ////////
+
+npm init --yes
+npm i --save-dev hardhat
+npx hardhat (till here create project)
+
+npx hardhat compile (compile project)
+npx hardhat test (run tests)
+npx hardhat run scripts/deploy.js --network rinkeby (deploy on rinkeby network)
+
+>> chainLink install 
+yarn add --dev @chainlink/contracts
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+
+/////////// Next.js /////////////////
+
+npx create-next-app appname (create next project)
+npm run dev (run project)
+
+/////////////// MUI ////////////
+>> install MUI and styles components
+npm i @mui/material @mui/styled-engine-sc styled-components (styled components)
+npm i --save-dev "bable-plugin-styled-components"  (for styled component no occur any issue)
+then create file .babelrc and inside it paste these lines
+ {
+    "presets": ["next/babel"],
+    "plugins": [
+        ["styled-components",{"ssr":true}]
+    ]
+ }
+
+>> install mui icons
+npm i @emotion/styled @emotion/react @mui/icons-material
+
+/////////////// GitHub /////////////
+
+create repo
+git init -b main
+git add .
+git commit -m "msg"
+git remote add origin repo-url
+git push origin main (till now for upload project on github)

@@ -1,0 +1,41 @@
+SHA256 Algorithm by this we generate hash of a block in blockchain
+	1) hashing algo is 1 way mean from with data we create encrypted code but with code we cant get data
+	2) Deterministic mean always create same enc code for same data e.g for ABC > 123 always
+
+>> Mining ? or also called proof of work
+   in mining pool there are many miners which mines. This mean if any transaction accur, among miner
+   which minor solve the mathematical problem first a block add to his blockchain and notify other miners to update
+   their blockchain as he mined a new block to his blockchain then other miners validate his block if correct then they add.
+   math problem is to generate a new hash for the new block.
+   hash= block no.+ block data(transactions)+prev block hash + Nonce(is a rendom no.)
+   a target value is given for hash
+   minor randomly change Nonce value and generate hash, which minor done first generate correct hash mean below to target value,
+   then he is won and new block will be edded to his blockchain.
+
+   our all Nonce will exaust in less then 1 second if hashed not match then in data field miner change transaction
+   with lowest fee with other transaction (in Mempool) just below to this fee repeat this process unitl target not match and by this new hash generate and our Nonce are available for again to use. And also time stamp change and new hash generate
+   and our all Nonce are available and again can use.
+
+
+SMART CONTRACT ?
+	smart contract is a programe that run on etherium blockchain.
+
+what is proof of stack ?
+	for become validator one person stack or give minimum 32 etherium to locker.
+	if person correctly validate the transaction then its stack etherium and transaction fee return to it.
+	if person harm system or do any illegal action then,he will loose its stack etherium and transaction fee.
+	this is proof of stack.
+	
+	in this validator selected randomly not like in mining who solve problem first.
+	chances for validator more if stack more eth.
+
+>> bitcoin use consensus protocol mean proof of work
+>> etherium use proof of stack
+
+
+
+/////////////   SOLIDITY   ////////////////////////
+>> compiler convert source code into ABI and bytecode.
+>> ABI is like a brigde btw application and contract or can say like api
+>> bytcode converted into opcodes. Etherium virtual machine EVM follow opcodes instructions.
+>> or simple EVM understand opcodes data.
