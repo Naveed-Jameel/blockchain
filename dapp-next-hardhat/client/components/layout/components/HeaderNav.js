@@ -7,6 +7,7 @@ const HeaderNav = () => {
   return (
     <HeaderNavWrapper>
       <Link href={"/"}>
+        {/* pass prop active */}
         <HeaderNavLink active={Router.pathname == "/" ? true : false}>
           Campaigns
         </HeaderNavLink>

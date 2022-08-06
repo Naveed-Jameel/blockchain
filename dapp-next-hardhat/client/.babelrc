@@ -1,6 +1,7 @@
+ // npm i @mui/material @mui/styled-engine-sc styled-components
  {
     "presets": ["next/babel"],
     "plugins": [
-        ["styled-components",{"ssr":true}]
-    ]
+        ["styled-components",{"ssr":true}] 
+    ]// for style-component to work perfectly
  }

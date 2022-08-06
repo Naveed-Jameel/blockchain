@@ -1,0 +1,7 @@
+for work this project completly we have to do following more steps;
+1)i think in .env we put rpc-url of rinkeby network not alchemy
+2) in client>components>form>components>formRightWrapper
+    correct the ipfs url according to our cotract 
+    currently we used from infura.io 
+3) in index file inside getStaticProps function check rpc-url
+4) inside form>Form.js in startCampaign function check CONTRACT_DEPLOYED_TO_ADDRESS 

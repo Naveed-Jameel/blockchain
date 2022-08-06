@@ -1,17 +1,74 @@
 import styled from "styled-components";
+import { FormState } from "../Form";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { TailSpin } from "react-loader-spinner";
+
+import { create as IPFSHTTPClient } from "ipfs-http-client";
+const client = IPFSHTTPClient("https://ipfs.infura.io:5001/apiv0");
 
 const FormRightWrapper = () => {
+  const Handler = useContext(FormState);
+  const [uploadLoading, setUploadLoading] = useState(false);
+  const [uploaded, setUploaded] = useState(false);
+
+  const handleUploadFile = async (e) => {
+    e.preventDefault();
+    setUploadLoading(true);
+
+    if (Handler.form.story !== "") {
+      try {
+        const added = await client.add(Handler.form.story);
+        Handler.setStoryUrl(added.path);
+      } catch (error) {
+        console.log("error story");
+        toast.warn("Error Uploading Story");
+      }
+    } else {
+      toast.warn("File Field is Required");
+      setUploadLoading(false);
+      return;
+    }
+
+    if (Handler.image !== null) {
+      try {
+        const added = await client.add(Handler.image);
+        Handler.setImageUrl(added.path);
+      } catch (error) {
+        toast.warn("Error Uploading Image");
+      }
+    } else {
+      toast.warn("Story Field is Required");
+      setUploadLoading(false);
+      return;
+    }
+
+    setUploadLoading(false);
+    setUploaded(true);
+    toast.success("Files Uploaded Success");
+  };
+
   return (
     <FormRight>
       <FormInput>
         <FormRow>
           <RowFirstInput>
             <label>Required Amount</label>
-            <Input type={"number"} placeholder="Required Amount"></Input>
+            <Input
+              value={Handler.form.requiredAmount}
+              onChange={Handler.formHandler}
+              type={"number"}
+              placeholder="Required Amount"
+              name="requiredAmount"
+            ></Input>
           </RowFirstInput>
           <RowSecondInput>
             <label>Choose Category</label>
-            <Select>
+            <Select
+              value={Handler.form.category}
+              onChange={Handler.formHandler}
+              name="category"
+            >
               <option>Education</option>
               <option>Health</option>
               <option>Animal</option>
@@ -21,10 +78,30 @@ const FormRightWrapper = () => {
       </FormInput>
       <FormInput>
         <label>Select Image</label>
-        <Image type={"file"} accept="image/*"></Image>
+        <Image
+          onChange={Handler.imageHandler}
+          type={"file"}
+          accept="image/*"
+        ></Image>
       </FormInput>
-      <Button>Upload Files to IPFS</Button>
-      <Button>Start Campaign</Button>
+      {uploadLoading ? (
+        <Button>
+          <TailSpin color="#fff" height={20} />
+        </Button>
+      ) : uploaded ? (
+        <Button style={{ cursor: "no-drop" }}>File Uploaded Successfuly</Button>
+      ) : (
+        <Button onClick={handleUploadFile}>Upload Files to IPFS</Button>
+      )}
+      <Button
+        onClick={(e) => {
+          uploaded
+            ? Handler.startCampaign(e)
+            : toast.warn("File Upload Required");
+        }}
+      >
+        Start Campaign
+      </Button>
     </FormRight>
   );
 };
@@ -102,6 +179,8 @@ const Image = styled.input`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding: 15px;
   color: white;
